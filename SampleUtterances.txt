@@ -1,0 +1,8 @@
+MyeeIntent ask infra health, how is myee health today
+AEMAuthorIntent how is aem author health today
+AEMPublisherIntent how is aem publisher health today
+IdAppIntent how is id app health today
+CasperIntent how is casper health today
+AuthorBackupIntent how is author backup health today
+AEMPublisherBackupIntent how is aem publisher backup health today
+SaltmasterIntent how is salt master health today

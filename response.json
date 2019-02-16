@@ -1,0 +1,24 @@
+{
+        "version": "1.0",
+        "response": {
+                "outputSpeech": {
+                        "type": "SSML",
+                        "ssml": "<speak>Services in My<say-as interpret-as=\"characters\">EE</say-as> are runing fine, my<say-as inte
+rpret-as=\"characters\">EE</say-as> all servers are app ready true, my<say-as interpret-as=\"characters\">EE</say-as> all servers are
+ in service in load balancer</speak>"
+                },
+
+                "shouldEndSession": true,
+                "card": {
+                        "type": "Standard",
+                        "title": "MYEE health check",
+                        "text": "Services in My<say-as interpret-as=\"characters\">EE</say-as> are runing fine, my<say-as interpret-a
+s=\"characters\">EE</say-as> all servers are app ready true, my<say-as interpret-as=\"characters\">EE</say-as> all servers are in ser
+vice in load balancer",
+                        "image": {
+                                "smallImageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hello_smile.png",
+                                "largeImageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hello_smile.png"
+                        }
+                }
+        }
+}
