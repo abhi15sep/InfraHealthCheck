@@ -1,6 +1,8 @@
 'use strict';
 
 var http = require('http');
+var s3 = require('./fs-read-file-s3.js');
+var BUCKET = 'alexa-thbsops';
 
 exports.handler = function(event,context) {
 
@@ -9,8 +11,6 @@ exports.handler = function(event,context) {
     if(process.env.NODE_DEBUG_EN) {
       console.log("Request:\n"+JSON.stringify(event,null,2));
     }
-
-
 
     var request = event.request;
     var session = event.session;
@@ -143,6 +143,8 @@ function buildResponse(options) {
   return response;
 }
 
+
+
 function handleLaunchRequest(context) {
   let options = {};
   options.speechText =  'Welcome to Infrastructure health check skill. Using our skill you can check health check of My<say-as interpret-as="characters">EE</say-as>, <say-as interpret-as="characters">AEM</say-as> author, <say-as interpret-as="characters">AEM</say-as> publisher, <say-as interpret-as="characters">ID</say-as> app, casper, author backup, <say-as interpret-as="characters">AEM</say-as> publisher backup, saltmaster. Which health check you want to know about?';
@@ -155,10 +157,16 @@ function handleMyeeIntent(request,context) {
     let options = {};
     options.speechText = `Services in My<say-as interpret-as="characters">EE</say-as> are runing fine, my<say-as interpret-as="characters">EE</say-as> all servers are app ready true, my<say-as interpret-as="characters">EE</say-as> all servers are in service in load balancer`;
     options.cardTitle = `MYEE health check`;
-    options.cardContent = options.speechText;
-    options.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hello_smile.png";
-    options.endSession = true;
-    context.succeed(buildResponse(options));
+    options.cardContent = s3.getS3Content('alexa-thbsops', 'myaccount_status.txt', (err, result) => {
+    if(err) {
+      context.fail(err);
+    } else {
+      options.cardContent = result.body
+      options.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hello_smile.png";
+      options.endSession = true;
+      context.succeed(buildResponse(options));
+    }
+  });
   }
 
   function handleAEMAuthorIntent(request,context) {
