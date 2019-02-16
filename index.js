@@ -155,7 +155,7 @@ function handleLaunchRequest(context) {
 
 function handleMyeeIntent(request,context) {
     let options = {};
-    options.speechText = `Services in My<say-as interpret-as="characters">EE</say-as> are runing fine, my<say-as interpret-as="characters">EE</say-as> all servers are app ready true, my<say-as interpret-as="characters">EE</say-as> all servers are in service in load balancer`;
+    options.speechText = `Services in My<say-as interpret-as="characters">EE</say-as> are running fine, my<say-as interpret-as="characters">EE</say-as> all servers are app ready true, my<say-as interpret-as="characters">EE</say-as> all servers are in service in load balancer`;
     options.cardTitle = `MYEE health check`;
     options.cardContent = s3.getS3Content('alexa-thbsops', 'myaccount_status.txt', (err, result) => {
     if(err) {
